@@ -1,9 +1,6 @@
-﻿
+﻿<div *ngIf='showCheckin'>
   <div id="checkin"></div>
-  <div  id="payment-menu"></div>
+</div>
+<div id="payment-menu"></div>
 
-  <button (click)='onPay()'>1: Render Checkin</button>
-  <button (click)='onPayment()'>2: Get render payment menu url</button>
-  <button (click)='renderMenu()'>3: Render payment menu</button>
-
-
+<button (click)='getRenderPaymentMenuUrl()'>continue to payment</button>

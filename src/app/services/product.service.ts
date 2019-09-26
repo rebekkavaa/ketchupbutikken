@@ -33,10 +33,13 @@ export class ProductService {
 
   getCheckinUrl(): Observable<any>{
     return this.http.get<any>('https://localhost:44307/api/Checkout/GetConsumerSession').pipe(
-    ) 
+      catchError(this.handleError)
+    );
   }
   getPaymentMenuUrl(ref:string): Observable<any>{
-    return this.http.post<any>('https://localhost:44307/api/Checkout/',JSON.stringify(ref),this.options).pipe()
+    return this.http.post<any>('https://localhost:44307/api/Checkout/',JSON.stringify(ref),this.options).pipe(
+      catchError(this.handleError)
+    );
   }
 
   private handleError(err: HttpErrorResponse) {
