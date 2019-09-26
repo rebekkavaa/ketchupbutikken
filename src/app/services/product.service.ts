@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders  } from '@angular/common/htt
 import { Observable, throwError, from } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 import { IProduct } from '../products/product';
+import { PaymentOrder } from '../checkout/paymentOrder'
 
 @Injectable({
   providedIn: 'root'

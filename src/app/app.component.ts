@@ -17,7 +17,7 @@ declare var payex: any;
   styleUrls: ['./app.component.css']
 })
 export class AppComponent{
-  pageTitle = 'Ketchup';
+  pageTitle = 'Catshop';
 
 
 }
