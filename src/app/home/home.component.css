@@ -169,5 +169,12 @@
     width:200px;
     margin-top: 500px;
     margin-right: 100px;
+    cursor: pointer;
   }
 
+  #bestcat{
+    height: 100px;
+    width:200px;
+    margin-top: 500px;
+    margin-right: 1800px;
+  }
