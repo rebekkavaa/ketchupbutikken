@@ -1,26 +1,46 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { ProductService } from '../services/product.service';
-import {ConsumerProfileRef} from '../checkout/consumerProfileRef'
+import { async } from '@angular/core/testing';
+
 declare var payex: any;
 
 @Component({
-  templateUrl: './checkout.component.html'
+  templateUrl: './checkout.component.html',
+  styleUrls: ['./checkout.component.css']
 })
 
 export class CheckoutComponent implements OnInit {
+  
+  showCheckin:boolean = true;
   private checkinurl: string;
-  
-  checkinRef: string = ""
-  payhref: string 
-  
+  consumerProfileRef: string = "";
+  paymentMenuUrl: string;
+  showPayButton:boolean = true;
+
   constructor(
     private productService: ProductService) {
   }
 
   ngOnInit(): void {
-    this.getRenderURL();
+    //Gets url for rendering check in
+    this.productService.getCheckinUrl().subscribe(async res => {
+      this.checkinurl = await res.operations[1].href;
+      this.renderCheckin();
+    });
+    
+    
   }
+
+  getRenderPaymentMenuUrl(): void {
+    this.showCheckin = false;
+    //Gets the url
+    this.productService.getPaymentMenuUrl(this.consumerProfileRef).subscribe(async res => {
+      this.paymentMenuUrl = await JSON.parse(res).operations.find(o => o.rel === 'view-paymentorder').href
+      //Render the menu
+      this.renderPaymentMenu();
+    })
+  }
+  
 
   renderCheckin(): void {
     let script = document.createElement('script');
@@ -30,47 +50,55 @@ export class CheckoutComponent implements OnInit {
         container: "checkin",
         culture: 'nb-NO',
         onConsumerIdentified: function (consumerIdentifiedEvent) {
+          console.log(consumerIdentifiedEvent);
           this.checkinRef = consumerIdentifiedEvent.consumerProfileRef
+          
+          //Render payment menu here
+          
+        
         },
         onShippingDetailsAvailable: function (shippingDetailsAvailableEvent) {
           console.log(shippingDetailsAvailableEvent);
         },
       }).open();
-    
     })
     document.getElementsByTagName('head')[0].appendChild(script);
     
   }
 
-  getRenderURL(): void {
-    this.productService.getCheckinUrl().subscribe((res) => {
-      this.checkinurl = res.operations[1].href
-    })
-  }
-  onPay(): void {
-    this.renderCheckin();
-  }
-  onPayment(): void {
-    this.getRenderPaymentMenuUrl(this.checkinRef)
-  }
-  renderMenu(): void {
+
+
+  renderPaymentMenu(): void {
+    this.showPayButton = false;
     let script = document.createElement('script')
-    script.src = this.payhref
-    console.log("En gang")
+    script.src = this.paymentMenuUrl
     script.addEventListener("load", function (e) {
       payex.hostedView.paymentMenu({
         container: 'payment-menu',
-        culture: 'nb-NO'
-        
-    }).open();
-    })  
+        culture: 'nb-NO',
+        onPaymentCompleted: function (paymentCompletedEvent) {
+          console.log(paymentCompletedEvent);
+        },
+        onPaymentFailed: function (paymentFailedEvent) {
+          console.log(paymentFailedEvent);
+        },
+        onPaymentCreated: function (paymentCreatedEvent) {
+          console.log(paymentCreatedEvent);
+        },
+        onPaymentToS: function (paymentToSEvent) {
+          console.log(paymentToSEvent);
+        },
+        onPaymentMenuInstrumentSelected: function (paymentMenuInstrumentSelectedEvent) {
+          console.log(paymentMenuInstrumentSelectedEvent);
+        },
+        onError: function (error) {
+          console.error(error);
+        }
+      }).open();
+    })
     document.getElementsByTagName('head')[0].appendChild(script);
   }
-  getRenderPaymentMenuUrl(consumerProfileRef: string): void {
-    this.productService.getPaymentMenuUrl(consumerProfileRef).subscribe((res) => {
-      let result = JSON.parse(res)
-      this.payhref = result.operations[3].href
-      console.log('payment menu url ffs' + this.payhref)
-    })
-  }
+
+
+  
 }

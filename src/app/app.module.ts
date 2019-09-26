@@ -28,8 +28,8 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
       { path: 'home', component: HomeComponent },
       { path: 'checkout', component: CheckoutComponent },
 
-      { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-      { path: '**', redirectTo: 'welcome', pathMatch: 'full' },
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: '**', redirectTo: 'home', pathMatch: 'full' },
 
     ]),
     ProductModule
