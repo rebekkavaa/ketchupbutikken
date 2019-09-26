@@ -34,6 +34,6 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
     ]),
     ProductModule
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [NavbarComponent]
 })
 export class AppModule { }
