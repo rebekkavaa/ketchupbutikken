@@ -7,7 +7,7 @@ declare var payex: any;
         <a class='navbar-brand'>{{pageTitle}}</a>
         <ul class='nav nav-pills'>
           <li><a class='nav-link' routerLinkActive='active' [routerLink]="['/welcome']">Home</a></li>
-          <li><a class='nav-link' routerLinkActive='active' [routerLink]="['/products']">Product List</a></li>
+          <li><a class='nav-link' routerLinkActive='active' [routerLink]="['/products']">Cat List</a></li>
         </ul>
     </nav>
     <div class='container'>
@@ -17,7 +17,7 @@ declare var payex: any;
   styleUrls: ['./app.component.css']
 })
 export class AppComponent{
-  pageTitle = 'Acme Product Management';
+  pageTitle = 'Catshop';
 
 
 }
