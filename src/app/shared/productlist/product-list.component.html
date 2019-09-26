@@ -3,13 +3,8 @@
   <div class='card-header'>
     Bestsellers:
   </div>
+
   <div class='card-body'>
-    <div class='row'
-         *ngIf='listFilter'>
-      <div class='col-md-6'>
-        <h4>Filtered by: {{listFilter}}</h4>
-      </div>
-    </div>
     <div class='table-responsive'>
       <table class='table'
              *ngIf='products && products.length'>
@@ -21,15 +16,12 @@
             <th></th>
           </tr>
         </thead>
-        <tbody>
           <tr *ngFor='let product of filteredProducts'>
-            <td>
               <img
                    [src]='product.imageUrl'
                    [title]='product.productName'
                    [style.width.px]='imageWidth'
                    [style.margin.px]='imageMargin'>
-            </td>
             <td>
               <a [routerLink]="['/products', product.productId]">
                 {{ product.productName }}
@@ -43,12 +35,7 @@
                 </button>
             </td>
           </tr>
-        </tbody>
       </table>
     </div>
   </div>
-</div>
-<div *ngIf='errorMessage'
-     class='alert alert-danger'>
-  Error: {{ errorMessage }}
 </div>
