@@ -5,7 +5,8 @@ import { async } from '@angular/core/testing';
 declare var payex: any;
 
 @Component({
-  templateUrl: './checkout.component.html'
+  templateUrl: './checkout.component.html',
+  styleUrls: ['./checkout.component.css']
 })
 
 export class CheckoutComponent implements OnInit {
@@ -14,7 +15,7 @@ export class CheckoutComponent implements OnInit {
   private checkinurl: string;
   consumerProfileRef: string = "";
   paymentMenuUrl: string;
-  
+  showPayButton:boolean = true;
 
   constructor(
     private productService: ProductService) {
@@ -54,7 +55,7 @@ export class CheckoutComponent implements OnInit {
           
           //Render payment menu here
           
-          console.log('render paymentmenu')
+        
         },
         onShippingDetailsAvailable: function (shippingDetailsAvailableEvent) {
           console.log(shippingDetailsAvailableEvent);
@@ -68,6 +69,7 @@ export class CheckoutComponent implements OnInit {
 
 
   renderPaymentMenu(): void {
+    this.showPayButton = false;
     let script = document.createElement('script')
     script.src = this.paymentMenuUrl
     script.addEventListener("load", function (e) {
