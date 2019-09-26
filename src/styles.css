@@ -13,3 +13,27 @@ div.card {
 .table {
   margin-top: 10px
 }
+
+#buttonWrapper{
+  justify-content: center;
+  display: flex;
+}
+#continueToPaymentBtn {
+	background-color:rgb(49, 163, 174);
+	-moz-border-radius:28px;
+	-webkit-border-radius:28px;
+	border-radius:3px;
+	cursor:pointer;
+  font: italic small-caps bold normal 14px/1.5em Verdana, Arial, Helvetica, sans-serif;
+  color: #ffffff;
+	padding:12px 100px;
+	text-decoration:none;
+	
+}
+#continueToPaymentBtn:hover {
+	background-color:#5581a5;
+}
+#continueToPaymentBtn:active {
+	position:relative;
+	top:1px;
+}
