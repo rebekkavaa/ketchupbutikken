@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { ProductService } from '../services/product.service';
-import {ConsumerProfileRef} from '../checkout/consumerProfileRef'
+
 declare var payex: any;
 
 @Component({
@@ -10,10 +9,10 @@ declare var payex: any;
 
 export class CheckoutComponent implements OnInit {
   private checkinurl: string;
-  
+
   checkinRef: string = ""
-  payhref: string 
-  
+  payhref: string
+
   constructor(
     private productService: ProductService) {
   }
@@ -30,16 +29,16 @@ export class CheckoutComponent implements OnInit {
         container: "checkin",
         culture: 'nb-NO',
         onConsumerIdentified: function (consumerIdentifiedEvent) {
+          console.log(consumerIdentifiedEvent);
           this.checkinRef = consumerIdentifiedEvent.consumerProfileRef
         },
         onShippingDetailsAvailable: function (shippingDetailsAvailableEvent) {
           console.log(shippingDetailsAvailableEvent);
         },
       }).open();
-    
+
     })
     document.getElementsByTagName('head')[0].appendChild(script);
-    
   }
 
   getRenderURL(): void {
@@ -47,12 +46,17 @@ export class CheckoutComponent implements OnInit {
       this.checkinurl = res.operations[1].href
     })
   }
+
+
   onPay(): void {
     this.renderCheckin();
   }
+
   onPayment(): void {
     this.getRenderPaymentMenuUrl(this.checkinRef)
   }
+
+
   renderMenu(): void {
     let script = document.createElement('script')
     script.src = this.payhref
@@ -61,11 +65,12 @@ export class CheckoutComponent implements OnInit {
       payex.hostedView.paymentMenu({
         container: 'payment-menu',
         culture: 'nb-NO'
-        
-    }).open();
-    })  
+      }).open();
+    })
     document.getElementsByTagName('head')[0].appendChild(script);
   }
+
+
   getRenderPaymentMenuUrl(consumerProfileRef: string): void {
     this.productService.getPaymentMenuUrl(consumerProfileRef).subscribe((res) => {
       let result = JSON.parse(res)
