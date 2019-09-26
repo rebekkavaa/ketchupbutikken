@@ -74,6 +74,7 @@ export class CheckoutComponent implements OnInit {
   getRenderPaymentMenuUrl(consumerProfileRef: string): void {
     this.productService.getPaymentMenuUrl(consumerProfileRef).subscribe((res) => {
       let result = JSON.parse(res)
+      console.log(result)
       this.payhref = result.operations[3].href
       console.log('payment menu url ffs' + this.payhref)
     })
