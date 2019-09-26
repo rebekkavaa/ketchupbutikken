@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { async } from '@angular/core/testing';
+import {PaymentOrder} from './paymentOrder'
+
 
 declare var payex: any;
 
@@ -16,6 +18,7 @@ export class CheckoutComponent implements OnInit {
   consumerProfileRef: string = "";
   paymentMenuUrl: string;
   showPayButton: boolean = true;
+  paymentOrder: PaymentOrder;
 
   constructor(
     private productService: ProductService) {
@@ -34,7 +37,10 @@ export class CheckoutComponent implements OnInit {
   getRenderPaymentMenuUrl(): void {
     this.showCheckin = false;
     //Gets the url
-    this.productService.getPaymentMenuUrl(this.consumerProfileRef).subscribe(async res => {
+    this.paymentOrder = new PaymentOrder();
+    this.paymentOrder.consumerProfileRef = this.consumerProfileRef;
+    this.paymentOrder.catPrice = 100;
+    this.productService.getPaymentMenuUrl(this.paymentOrder.consumerProfileRef).subscribe(async res => {
       this.paymentMenuUrl = await JSON.parse(res).operations.find(o => o.rel === 'view-paymentorder').href
       //Render the menu
       this.renderPaymentMenu();
