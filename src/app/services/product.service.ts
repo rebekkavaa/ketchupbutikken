@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders  } from '@angular/common/http';
 import { Observable, throwError, from } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
-import { ConsumerProfileRef} from '../checkout/consumerProfileRef'
 import { IProduct } from '../products/product';
 
 @Injectable({
