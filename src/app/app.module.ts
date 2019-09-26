@@ -1,22 +1,39 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BuyComponent } from './buy/buy.component';
-import { CheckinComponent } from './checkin/checkin.component';
+import { HomeComponent } from './home/home.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { ProductModule } from './products/product.module';
+import { NavbarComponent } from './shared/navbar/navbar.component';
+
+
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    BuyComponent,
-    CheckinComponent
+    HomeComponent,
+    CheckoutComponent,
+    NavbarComponent,
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    RouterModule.forRoot([
+      { path: 'home', component: HomeComponent },
+      { path: 'checkout', component: CheckoutComponent },
+
+      { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+      { path: '**', redirectTo: 'welcome', pathMatch: 'full' },
+
+    ]),
+    ProductModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
