@@ -2,6 +2,7 @@ export class Cat {
 CatName: string 
 ProductId: number
 Price: number
+consumerProfileRef:string;
 }
 
 // _cat.CatName = cat.CatName;
