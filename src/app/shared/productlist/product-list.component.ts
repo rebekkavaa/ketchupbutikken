@@ -48,7 +48,6 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.productService.getCheckinUrl();
     this.productService.getProducts().subscribe({
       next: products => {
         this.products = products;
@@ -63,11 +62,11 @@ export class ProductListComponent implements OnInit {
     this.cat.CatName = product.productName
     this.cat.Price = product.price
     this.cat.ProductId = product.productId
-    this.router.navigate(['/checkout'])
+    
     this.productService.postCatInfo(this.cat).subscribe( res => {
       console.log(res)
-    }
-    )
+    })
+    this.router.navigate(['/checkout']) 
   }
 
   
