@@ -15,7 +15,7 @@ export class ProductService {
     headers: new HttpHeaders({
         'Content-Type': 'application/json',
 })}
-  cat: Cat
+  
   constructor(private http: HttpClient) { }
 
   getProducts(): Observable<IProduct[]> {
@@ -37,12 +37,9 @@ export class ProductService {
       catchError(this.handleError)
     );
   }
-  postCatInfo(): Observable<any>{
-    this.cat = new Cat()
-    this.cat.CatName = "Neil"
-    this.cat.Price = 12
-    this.cat.ProductId = 1
-    return this.http.post<any>('https://localhost:44307/api/Checkout/GetCatOrder',this.cat)
+  postCatInfo(cat:Cat): Observable<any>{
+    
+    return this.http.post<any>('https://localhost:44307/api/Checkout/GetCatOrder',cat)
       
     
     //Post cat info
