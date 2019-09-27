@@ -3,13 +3,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IProduct } from '../../products/product';
 import { ProductService } from '../../services/product.service';
 
+
 @Component({
-  templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  templateUrl: './product-list.component.html'
 })
 export class ProductListComponent implements OnInit {
   pageTitle = 'Product List';
-  imageWidth = 100;
+  imageWidth = 50;
   imageMargin = 2;
   showImage = false;
   errorMessage = '';
@@ -58,4 +58,6 @@ export class ProductListComponent implements OnInit {
   onBuy(): void {
     this.router.navigate(['/checkout'])
   }
+
+  
 }

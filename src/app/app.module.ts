@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ProductModule } from './products/product.module';
-import { NavbarComponent } from './shared/navbar/navbar.component';
 
 
 
@@ -17,9 +16,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
   declarations: [
     AppComponent,
     HomeComponent,
-    CheckoutComponent,
-    NavbarComponent,
-    
+    CheckoutComponent,    
   ],
   imports: [
     BrowserModule,
@@ -28,8 +25,8 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
       { path: 'home', component: HomeComponent },
       { path: 'checkout', component: CheckoutComponent },
 
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
-      { path: '**', redirectTo: 'home', pathMatch: 'full' },
+      { path: '', redirectTo: 'products', pathMatch: 'full' },
+      { path: '**', redirectTo: 'products', pathMatch: 'full' },
 
     ]),
     ProductModule
