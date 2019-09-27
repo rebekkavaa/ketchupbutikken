@@ -119,10 +119,10 @@
       z-index: 2;
       
       -moz-animation:move-background 70s linear infinite;
-    -ms-animation:move-background 70s linear infinite;
-    -o-animation:move-background 70s linear infinite;
-    -webkit-animation:move-background 70s linear infinite;
-    animation:move-background 70s linear infinite;
+      -ms-animation:move-background 70s linear infinite;
+      -o-animation:move-background 70s linear infinite;
+      -webkit-animation:move-background 70s linear infinite;
+      animation:move-background 70s linear infinite;
       
   }
   
@@ -143,6 +143,10 @@
     -webkit-animation:move-background 50s linear infinite;
     animation:move-background 50s linear infinite;
   }
+  .textEnd{
+    z-index: 10;
+  }
+
   img{
     height: 70vh;
     width:70vh;
@@ -161,7 +165,12 @@
   z-index: 3;
   right: 15%;
     -webkit-animation: vibrate-1 0.3s linear infinite both;
-	animation: vibrate-1 0.3s linear infinite both;
+  animation: vibrate-1 0.3s linear infinite both;
+  
+}
+#spaceshipandbubble{
+display: flex;
+flex-direction: column;
 }
 
 #btn{
@@ -170,6 +179,7 @@
     margin-top: 500px;
     margin-right: 100px;
     cursor: pointer;
+  
   }
 
   #bestcat{
