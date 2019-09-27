@@ -36,8 +36,17 @@
 .card{
 	background-color: black;
 	color: white;
+	margin: 0px;
+
+}
+
+.card-header{
+	font-family: 'Permanent Marker', cursive;
+	font-size: 40px;
 }
 
 p, h6{
-	color: white
+	color: white;
+	font-family: 'Arial'
 }
+

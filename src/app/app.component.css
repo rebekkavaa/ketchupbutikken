@@ -3,3 +3,19 @@
     height: 100%;
     width: 100%;
 }
+
+.navbar{
+    background-image: linear-gradient(#bc45c7, #7200f5);
+    color:white;
+}
+
+#navlogo{
+    font-family: 'Permanent Marker', cursive;
+    font-size: 25px;
+}
+#navlink{
+    text-decoration: none;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 25px;
+    color: white;
+}

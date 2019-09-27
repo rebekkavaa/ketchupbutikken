@@ -86,7 +86,7 @@ export class CheckoutComponent implements OnInit {
                     backgroundColor: "#ede6d1",
                     borderRadius: "5px",
                     margin: "2px 3px 2px 3px",
-                    padding: "3px 2px 3px 2px"
+                    padding: "3px 2px 3px 2px",
                   }
                 }
               }).open();

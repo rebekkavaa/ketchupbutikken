@@ -4,11 +4,11 @@ declare var payex: any;
   selector: 'pm-root',
   template: `
   
-    <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
+    <nav class='navbar navbar-expand-lg'>
     <ul class='nav nav-pills'>
-    <li><a class='nav-link' routerLinkActive='active' [routerLink]="['/home']"><- back</a></li>
+    <li><a class='nav-link' [routerLink]="['/products']" id='navlink'><- back</a></li>
     </ul>
-        <a class='navbar-brand'>{{pageTitle}}</a>
+        <a class='navbar-brand' id='navlogo'>{{pageTitle}}</a>
     </nav>
     <div class='container' id='bckg'>
       <router-outlet></router-outlet>
