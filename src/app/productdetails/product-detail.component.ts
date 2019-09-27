@@ -38,6 +38,6 @@ export class ProductDetailComponent implements OnInit {
   }
 
   onBuy(): void {
-    this.router.navigate(['/buy']);
+    this.router.navigate(['/checkout']);
   }
 }

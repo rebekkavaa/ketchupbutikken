@@ -31,6 +31,6 @@ import { ProductModule } from './products/product.module';
     ]),
     ProductModule
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [NavbarComponent]
 })
 export class AppModule { }

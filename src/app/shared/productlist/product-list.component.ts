@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IProduct } from '../../products/product';
 import { ProductService } from '../../services/product.service';
+import { Cat } from './Cat'
 
 
 @Component({
   templateUrl: './product-list.component.html'
 })
 export class ProductListComponent implements OnInit {
+  cat: Cat;
   pageTitle = 'Product List';
   imageWidth = 50;
   imageMargin = 2;
@@ -55,8 +57,16 @@ export class ProductListComponent implements OnInit {
     });
   }
 
-  onBuy(): void {
+  onBuy(product): void {
+    this.cat = new Cat()
+    this.cat.CatName = product.productName
+    this.cat.Price = product.price
+    this.cat.ProductId = product.productId
     this.router.navigate(['/checkout'])
+    this.productService.postCatInfo(this.cat).subscribe( res => {
+      console.log(res)
+    }
+    )
   }
 
   
