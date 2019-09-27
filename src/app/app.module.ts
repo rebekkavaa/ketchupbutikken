@@ -8,10 +8,6 @@ import { HomeComponent } from './home/home.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ProductModule } from './products/product.module';
 
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
