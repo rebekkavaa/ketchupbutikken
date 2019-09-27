@@ -39,15 +39,18 @@ export class ProductService {
   }
   postCatInfo(): Observable<any>{
     this.cat = new Cat()
-    this.cat.Name = "Neil"
+    this.cat.CatName = "Neil"
     this.cat.Price = 12
     this.cat.ProductId = 1
+    return this.http.post<any>('https://localhost:44307/api/Checkout/GetCatOrder',this.cat)
+      
+    
     //Post cat info
     // _cat.CatName = cat.CatName;
     // _cat.ProductId = cat.ProductId;
     // _cat.Price = cat.Price;
     // _cat.OrderDate = cat.OrderDate;
-    return 
+    
   }
 
   private handleError(err: HttpErrorResponse) {

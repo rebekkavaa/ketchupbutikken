@@ -1,5 +1,5 @@
 export class Cat {
-Name: string 
+CatName: string 
 ProductId: number
 Price: number
 }
