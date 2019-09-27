@@ -4,9 +4,10 @@ import { IProduct } from '../../products/product';
 import { ProductService } from '../../services/product.service';
 import { Cat } from './Cat'
 
+
 @Component({
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
   cat: Cat;
@@ -65,4 +66,6 @@ export class ProductListComponent implements OnInit {
     this.productService.cat = this.cat;
     this.router.navigate(['/checkout']) 
   }
+
+  
 }
