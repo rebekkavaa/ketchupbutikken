@@ -1,5 +1,5 @@
 <h3>Best Sellers:</h3>
-<div class="bd-example">
+
     <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
         <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
@@ -38,7 +38,43 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
-  </div>
 
-  <a href="#" class="myButton">meow all </a>
+    <div class='card'>
+        <div class='card-header'>
+          All cats:
+        </div>
+      
+        <div class='card-body'>
+          <div class='table-responsive'>
+            <table class='table'
+                   *ngIf='products && products.length'>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Cat</th>
+                  <th>Price</th>
+                  <th></th>
+                </tr>
+              </thead>
+                <tr *ngFor='let product of filteredProducts'>
+                    <img
+                         [src]='product.imageUrl'
+                         [title]='product.productName'
+                         [style.width.px]='imageWidth'
+                         [style.margin.px]='imageMargin'>
+                  <td>
+                    <a [routerLink]="['/products', product.productId]">
+                      {{ product.productName }}
+                    </a>
+                  </td>
+                  <td>{{ product.price | currency:'USD':'symbol':'1.2-2'}}</td>
+                  <td>
+                      <button
+                      (click)='onBuy(product)'>
+                        Buy
+                      </button>
+                  </td>
+                </tr>
+            </table>
+  
   
