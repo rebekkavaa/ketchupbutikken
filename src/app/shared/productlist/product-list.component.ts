@@ -62,9 +62,7 @@ export class ProductListComponent implements OnInit {
     this.cat.Price = product.price
     this.cat.ProductId = product.productId
     
-    this.productService.postCatInfo(this.cat).subscribe( res => {
-      console.log(res)
-    })
+    this.productService.cat = this.cat;
     this.router.navigate(['/checkout']) 
   }
 }

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
-import { async } from '@angular/core/testing';
-import { Alert } from 'selenium-webdriver';
-
+import {Cat} from '../shared/productlist/Cat'
+import { from } from 'rxjs';
 
 declare var payex: any;
 
@@ -13,10 +12,8 @@ declare var payex: any;
 
 export class CheckoutComponent implements OnInit {
 
-  showCheckin: boolean = true;
-  private checkinurl: string;
   
- 
+  private checkinurl: string;
   
   
 
@@ -28,16 +25,18 @@ export class CheckoutComponent implements OnInit {
     //Gets url for rendering check in
     this.productService.getCheckinUrl().subscribe(async res => {
       this.checkinurl = await res.operations[1].href;
-      this.renderCheckin();
+      this.renderCheckin(this.productService.cat);
+      console.log(this.productService.cat)
     });
 
 
   }
 
   
+   
 
-
-  renderCheckin(): void {
+  renderCheckin(cat:Cat): void {
+    
     let script = document.createElement('script');
     script.src = this.checkinurl;
     script.addEventListener("load", function (e) {
@@ -45,9 +44,9 @@ export class CheckoutComponent implements OnInit {
         container: "checkin",
         culture: 'nb-NO',
         onConsumerIdentified: function (consumerIdentifiedEvent) {
+          cat.consumerProfileRef = consumerIdentifiedEvent.consumerProfileRef;
+          console.log(cat);
           console.log(consumerIdentifiedEvent);
-
-
           var request = new XMLHttpRequest();
           request.addEventListener('load', (e) => {
             let res = JSON.parse(request.responseText);
@@ -92,9 +91,9 @@ export class CheckoutComponent implements OnInit {
             head.appendChild(script);
           })
 
-          request.open('POST', 'https://localhost:44307/api/Checkout/', true);
+          request.open('POST','https://localhost:44307/api/Checkout/', true);
           request.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
-          request.send(JSON.stringify(consumerIdentifiedEvent.consumerProfileRef));
+          request.send(JSON.stringify(cat));
 
 
         },
