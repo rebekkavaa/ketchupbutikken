@@ -10,7 +10,7 @@ declare var payex: any;
     </ul>
         <a class='navbar-brand'>{{pageTitle}}</a>
     </nav>
-    <div class='container'>
+    <div class='container' id='bckg'>
       <router-outlet></router-outlet>
     </div>
     `,
