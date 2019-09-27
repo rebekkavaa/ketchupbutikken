@@ -10,10 +10,7 @@ import { Cat } from '../shared/productlist/Cat';
 })
 export class ProductService {
   private productUrl = 'api/products/products.json';
-  private options = {
-    headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-})}
+  cat:Cat;
   
   constructor(private http: HttpClient) { }
 

@@ -21,7 +21,7 @@
   },
   {
     "productId": 5,
-    "productName": "TacoCat",
+    "productName": "Taco Cat",
     "productCode": "TBX-0048",
     "releaseDate": "May 21, 2019",
     "description": "This tacoCat v2.0 will make you taco or burritos with it's lasersight (but only if he's in the right mood)",
@@ -44,7 +44,7 @@
     "productName": "Fat Space Cat",
     "productCode": "GMG-0042",
     "releaseDate": "October 15, 2018",
-    "description": "Just fat.",
+    "description": "He's just fat. Limited edition.",
     "price": 4000,
     "starRating": 4.6,
     "imageUrl": "assets/images/spacecat6.jpg"
