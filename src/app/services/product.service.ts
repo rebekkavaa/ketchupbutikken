@@ -3,7 +3,6 @@ import { HttpClient, HttpErrorResponse, HttpHeaders  } from '@angular/common/htt
 import { Observable, throwError, from } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 import { IProduct } from '../products/product';
-import { PaymentOrder } from '../checkout/paymentOrder';
 import { Cat } from '../shared/productlist/Cat';
 
 @Injectable({
@@ -38,20 +37,10 @@ export class ProductService {
     );
   }
   postCatInfo(cat:Cat): Observable<any>{
-    
     return this.http.post<any>('https://localhost:44307/api/Checkout/GetCatOrder',cat)
-      
-    
-    //Post cat info
-    // _cat.CatName = cat.CatName;
-    // _cat.ProductId = cat.ProductId;
-    // _cat.Price = cat.Price;
-    // _cat.OrderDate = cat.OrderDate;
-    
   }
 
   private handleError(err: HttpErrorResponse) {
-
     let errorMessage = '';
     if (err.error instanceof ErrorEvent) {
       errorMessage = `An error occurred: ${err.error.message}`;

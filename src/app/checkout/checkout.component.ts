@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { async } from '@angular/core/testing';
-import { PaymentOrder } from './paymentOrder'
 import { Alert } from 'selenium-webdriver';
 
 
@@ -52,6 +51,7 @@ export class CheckoutComponent implements OnInit {
           var request = new XMLHttpRequest();
           request.addEventListener('load', (e) => {
             let res = JSON.parse(request.responseText);
+            console.log(res)
             let renderPaymentMenuUrl = JSON.parse(res).operations.find(((o) => o.rel === 'view-paymentorder')).href
             let script = document.createElement('script');
             script.src = renderPaymentMenuUrl;
