@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { async } from '@angular/core/testing';
 import { PaymentOrder } from './paymentOrder'
+import { Alert } from 'selenium-webdriver';
 
 
 declare var payex: any;
@@ -68,6 +69,7 @@ export class CheckoutComponent implements OnInit {
                   console.log(paymentCreatedEvent);
                 },
                 onPaymentToS: function (paymentToSEvent) {
+                  
                   console.log(paymentToSEvent);
                 },
                 onPaymentMenuInstrumentSelected: function (paymentMenuInstrumentSelectedEvent) {
@@ -107,7 +109,7 @@ export class CheckoutComponent implements OnInit {
             padding: "3px 2px 3px 2px"
           },
           button: {
-            color: '#ffffff',
+            color: '#green',
             font: "italic small-caps bold normal 14px/1.5em Verdana, Arial, Helvetica, sans-serif",
             fontSize: '18px',
             width: '200px'
