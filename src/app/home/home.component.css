@@ -159,13 +159,14 @@
   }
 
 #cat{
-    margin-top:200px;
+    margin-top:300px;
   height: 200px;
   width: 350px;
   z-index: 3;
   right: 15%;
     -webkit-animation: vibrate-1 0.3s linear infinite both;
   animation: vibrate-1 0.3s linear infinite both;
+  cursor: pointer;
   
 }
 #spaceshipandbubble{
