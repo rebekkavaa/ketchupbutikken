@@ -26,7 +26,7 @@ import { ProductModule } from './products/product.module';
       { path: 'checkout', component: CheckoutComponent },
 
       { path: '', redirectTo: 'products', pathMatch: 'full' },
-      { path: '**', redirectTo: 'products', pathMatch: 'full' },
+      { path: '**', redirectTo: '', pathMatch: 'full' },
 
     ]),
     ProductModule
