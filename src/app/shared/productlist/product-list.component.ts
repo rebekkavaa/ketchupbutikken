@@ -57,5 +57,6 @@ export class ProductListComponent implements OnInit {
 
   onBuy(): void {
     this.router.navigate(['/checkout'])
+    this.productService.postCatInfo()
   }
 }
