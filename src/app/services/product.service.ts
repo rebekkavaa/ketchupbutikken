@@ -37,23 +37,7 @@ export class ProductService {
       catchError(this.handleError)
     );
   }
-  getPaymentMenuUrl(ref:string): Observable<any>{
-    return this.http.post<any>('https://localhost:44307/api/Checkout/',JSON.stringify(ref),this.options).pipe(
-      catchError(this.handleError)
-    );
-  }
-  postCatInfo(): Observable<any>{
-    this.cat = new Cat()
-    this.cat.Name = "Neil"
-    this.cat.Price = 12
-    this.cat.ProductId = 1
-    //Post cat info
-    // _cat.CatName = cat.CatName;
-    // _cat.ProductId = cat.ProductId;
-    // _cat.Price = cat.Price;
-    // _cat.OrderDate = cat.OrderDate;
-    return 
-  }
+  
 
   private handleError(err: HttpErrorResponse) {
 
