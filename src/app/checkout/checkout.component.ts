@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { async } from '@angular/core/testing';
+import { PaymentOrder } from './paymentOrder'
+import { Alert } from 'selenium-webdriver';
+
 
 declare var payex: any;
 
@@ -13,9 +16,10 @@ export class CheckoutComponent implements OnInit {
 
   showCheckin: boolean = true;
   private checkinurl: string;
-  consumerProfileRef: string = "";
-  paymentMenuUrl: string;
-  showPayButton: boolean = true;
+  
+ 
+  
+  
 
   constructor(
     private productService: ProductService) {
@@ -31,15 +35,7 @@ export class CheckoutComponent implements OnInit {
 
   }
 
-  getRenderPaymentMenuUrl(): void {
-    this.showCheckin = false;
-    //Gets the url
-    this.productService.getPaymentMenuUrl(this.consumerProfileRef).subscribe(async res => {
-      this.paymentMenuUrl = await JSON.parse(res).operations.find(o => o.rel === 'view-paymentorder').href
-      //Render the menu
-      this.renderPaymentMenu();
-    })
-  }
+  
 
 
   renderCheckin(): void {
@@ -51,9 +47,54 @@ export class CheckoutComponent implements OnInit {
         culture: 'nb-NO',
         onConsumerIdentified: function (consumerIdentifiedEvent) {
           console.log(consumerIdentifiedEvent);
-          this.checkinRef = consumerIdentifiedEvent.consumerProfileRef
 
-          //Render payment menu here
+
+          var request = new XMLHttpRequest();
+          request.addEventListener('load', (e) => {
+            let res = JSON.parse(request.responseText);
+            let renderPaymentMenuUrl = JSON.parse(res).operations.find(((o) => o.rel === 'view-paymentorder')).href
+            let script = document.createElement('script');
+            script.src = renderPaymentMenuUrl;
+            script.onload = () => {
+              payex.hostedView.paymentMenu({
+                container: 'payment-menu',
+                culture: 'nb-NO',
+                onPaymentCompleted: function (paymentCompletedEvent) {
+                  console.log(paymentCompletedEvent);
+                },
+                onPaymentFailed: function (paymentFailedEvent) {
+                  console.log(paymentFailedEvent);
+                },
+                onPaymentCreated: function (paymentCreatedEvent) {
+                  console.log(paymentCreatedEvent);
+                },
+                onPaymentToS: function (paymentToSEvent) {
+                  
+                  console.log(paymentToSEvent);
+                },
+                onPaymentMenuInstrumentSelected: function (paymentMenuInstrumentSelectedEvent) {
+                  console.log(paymentMenuInstrumentSelectedEvent);
+                },
+                onError: function (error) {
+                  console.error(error);
+                },
+                style: {
+                  body: {
+                    backgroundColor: "#ede6d1",
+                    borderRadius: "5px",
+                    margin: "2px 3px 2px 3px",
+                    padding: "3px 2px 3px 2px"
+                  }
+                }
+              }).open();
+            };
+            var head = document.getElementsByTagName('head')[0];
+            head.appendChild(script);
+          })
+
+          request.open('POST', 'https://localhost:44307/api/Checkout/', true);
+          request.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+          request.send(JSON.stringify(consumerIdentifiedEvent.consumerProfileRef));
 
 
         },
@@ -68,58 +109,22 @@ export class CheckoutComponent implements OnInit {
             padding: "3px 2px 3px 2px"
           },
           button: {
-            color: '#ffffff',
+            color: '#green',
             font: "italic small-caps bold normal 14px/1.5em Verdana, Arial, Helvetica, sans-serif",
             fontSize: '18px',
             width: '200px'
-          }
-        }
-      }).open();
-    })
-    document.getElementsByTagName('head')[0].appendChild(script);
-
-  }
-
-
-
-  renderPaymentMenu(): void {
-    this.showPayButton = false;
-    let script = document.createElement('script')
-    script.src = this.paymentMenuUrl
-    script.addEventListener("load", function (e) {
-      payex.hostedView.paymentMenu({
-        container: 'payment-menu',
-        culture: 'nb-NO',
-        onPaymentCompleted: function (paymentCompletedEvent) {
-          console.log(paymentCompletedEvent);
-        },
-        onPaymentFailed: function (paymentFailedEvent) {
-          console.log(paymentFailedEvent);
-        },
-        onPaymentCreated: function (paymentCreatedEvent) {
-          console.log(paymentCreatedEvent);
-        },
-        onPaymentToS: function (paymentToSEvent) {
-          console.log(paymentToSEvent);
-        },
-        onPaymentMenuInstrumentSelected: function (paymentMenuInstrumentSelectedEvent) {
-          console.log(paymentMenuInstrumentSelectedEvent);
-        },
-        onError: function (error) {
-          console.error(error);
-        },
-        style: {
-          body: {
+          },
+          label: {
             backgroundColor: "#ede6d1",
-            borderRadius: "5px",
-            margin: "2px 3px 2px 3px",
-            padding: "3px 2px 3px 2px"
           }
         }
       }).open();
     })
     document.getElementsByTagName('head')[0].appendChild(script);
   }
+
+
+
 
 
 

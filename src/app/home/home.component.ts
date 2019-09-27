@@ -17,5 +17,9 @@ export class HomeComponent {
   onEnter(): void {
     this.router.navigate(['/products']);
   }
+  onPurchase(): void {
+    this.router.navigate(['/checkout']);
+  }
+  
  
 }
