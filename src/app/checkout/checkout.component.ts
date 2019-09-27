@@ -58,6 +58,7 @@ export class CheckoutComponent implements OnInit {
             let script = document.createElement('script');
             script.src = renderPaymentMenuUrl;
             script.onload = () => {
+              
               payex.hostedView.paymentMenu({
                 container: 'payment-menu',
                 culture: 'nb-NO',
