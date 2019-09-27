@@ -1,5 +1,5 @@
-<h3>Best Sellers:</h3>
-
+<div class='card'>
+    <div class='card-header'>Best sellers:</div>
     <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
         <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
@@ -38,6 +38,7 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
+  </div>
 
     <div class='card'>
         <div class='card-header'>
@@ -46,16 +47,8 @@
       
         <div class='card-body'>
           <div class='table-responsive'>
-            <table class='table'
+            <table 
                    *ngIf='products && products.length'>
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>Cat</th>
-                  <th>Price</th>
-                  <th></th>
-                </tr>
-              </thead>
                 <tr *ngFor='let product of filteredProducts'>
                     <img
                          [src]='product.imageUrl'
@@ -63,16 +56,16 @@
                          [style.width.px]='imageWidth'
                          [style.margin.px]='imageMargin'>
                   <td>
-                    <a [routerLink]="['/products', product.productId]">
+                    <h6>
                       {{ product.productName }}
-                    </a>
-                  </td>
-                  <td>{{ product.price | currency:'USD':'symbol':'1.2-2'}}</td>
-                  <td>
-                      <button
-                      (click)='onBuy(product)'>
-                        Buy
-                      </button>
+                    </h6>
+                    <p>
+                      {{ product.price | currency:'USD':'symbol':'1.2-2'}}
+                    </p>
+                    <button class='btn'
+                    (click)='onBuy(product)'>
+                      Buy
+                    </button>
                   </td>
                 </tr>
             </table>

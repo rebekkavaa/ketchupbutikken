@@ -4,7 +4,7 @@ declare var payex: any;
   selector: 'pm-root',
   template: `
   
-    <nav class='navbar navbar-expand-lg navbar-dark bg-light'>
+    <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
     <ul class='nav nav-pills'>
     <li><a class='nav-link' routerLinkActive='active' [routerLink]="['/products']"><-</a></li>
     </ul>

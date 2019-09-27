@@ -12,8 +12,8 @@ import { Cat } from './Cat'
 export class ProductListComponent implements OnInit {
   cat: Cat;
   pageTitle = 'Product List';
-  imageWidth = 50;
-  imageMargin = 2;
+  imageWidth = 100;
+  imageMargin = 10;
   showImage = false;
   errorMessage = '';
 
