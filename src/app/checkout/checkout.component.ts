@@ -76,12 +76,9 @@ export class CheckoutComponent implements OnInit {
                 style: {
                   body: {
                     backgroundColor: "transparent",
-                    borderRadius: "5px",
-                    margin: "2px 3px 2px 3px",
-                    padding: "3px 2px 3px 2px",
                   },
                   input: {
-                    backgroundColor: "#fd94ff",
+                    backgroundColor: "black",
                     focus: {
                       border: 'green'
                     },
@@ -92,14 +89,14 @@ export class CheckoutComponent implements OnInit {
                   button: {
                     color: '#fff',
                     backgroundColor: '#7200f5',
-                    font: "italic small-caps bold normal 14px/1.5em Verdana, Arial, Helvetica, sans-serif",
+                    font: "Arial",
                     fontSize: '18px',
                     width: '200px'
                   },
                   secondaryButton: {
                     color: '#fff',
                     backgroundColor: '#7200f5',
-                    font: "italic small-caps bold normal 14px/1.5em Verdana, Arial, Helvetica, sans-serif",
+                    font: "Arial",
                     fontSize: '18px',
                     width: '200px',
                   },
@@ -130,7 +127,7 @@ export class CheckoutComponent implements OnInit {
           button: {
             color: '#fff',
             backgroundColor: '#7200f5',
-            font: "italic small-caps bold normal 14px/1.5em Verdana, Arial, Helvetica, sans-serif",
+            font: "Arial",
             fontSize: '18px',
             width: '200px',
           },
