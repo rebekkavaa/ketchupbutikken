@@ -26,7 +26,7 @@ export class CheckoutComponent implements OnInit {
     //Gets url for rendering check in
     this.cat = this.productService.cat;
     this.productService.getCheckinUrl().subscribe(async res => {
-  
+
       this.checkinurl = await res.operations[1].href;
       this.renderCheckin(this.cat);
       console.log(this.cat)
@@ -58,7 +58,7 @@ export class CheckoutComponent implements OnInit {
             let script = document.createElement('script');
             script.src = renderPaymentMenuUrl;
             script.onload = () => {
-              
+
               payex.hostedView.paymentMenu({
                 container: 'payment-menu',
                 culture: 'nb-NO',
@@ -83,11 +83,35 @@ export class CheckoutComponent implements OnInit {
                 },
                 style: {
                   body: {
-                    backgroundColor: "#ede6d1",
+                    backgroundColor: "transparent",
                     borderRadius: "5px",
                     margin: "2px 3px 2px 3px",
                     padding: "3px 2px 3px 2px",
-                  }
+                  },
+                  input: {
+                    backgroundColor: "#fd94ff",
+                    focus: {
+                      border: 'green'
+                    },
+                    invalid: {
+                      border: 'red'
+                    }
+                  },
+                  button: {
+                    color: '#fff',
+                    backgroundColor: '#7200f5',
+                    font: "italic small-caps bold normal 14px/1.5em Verdana, Arial, Helvetica, sans-serif",
+                    fontSize: '18px',
+                    width: '200px'
+                  },
+                  secondaryButton: {
+                    color: '#fff',
+                    backgroundColor: '#7200f5',
+                    font: "italic small-caps bold normal 14px/1.5em Verdana, Arial, Helvetica, sans-serif",
+                    fontSize: '18px',
+                    width: '200px',
+                  },
+                 
                 }
               }).open();
             };
@@ -106,20 +130,24 @@ export class CheckoutComponent implements OnInit {
         },
         style: {
           body: {
-            backgroundColor: "#ede6d1",
+            backgroundColor: "transparent",
             borderRadius: "5px",
             margin: "2px 3px 2px 3px",
-            padding: "3px 2px 3px 2px"
+            padding: "3px 2px 3px 2px",
           },
           button: {
-            color: '#green',
+            color: '#fff',
+            backgroundColor: '#7200f5',
             font: "italic small-caps bold normal 14px/1.5em Verdana, Arial, Helvetica, sans-serif",
             fontSize: '18px',
-            width: '200px'
+            width: '200px',
           },
           label: {
-            backgroundColor: "#ede6d1",
-          }
+            backgroundColor: "#fd94ff",
+            padding: '5px',
+            margin: '2px'
+          },
+          
         }
       }).open();
     })
