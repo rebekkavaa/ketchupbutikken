@@ -15,6 +15,7 @@ export class CheckoutComponent implements OnInit {
 
   private checkinurl: string;
   cat: Cat;
+  showcheckin: Boolean;
 
 
 
@@ -86,7 +87,7 @@ export class CheckoutComponent implements OnInit {
                     backgroundColor: "transparent",
                   },
                   input: {
-                    backgroundColor: "black",
+                    backgroundColor: "white",
                     focus: {
                       border: 'green'
                     },
