@@ -14,6 +14,7 @@ export class CheckoutComponent implements OnInit {
 
   private checkinurl: string;
   cat: Cat;
+  
 
   constructor(
     private productService: ProductService) {
@@ -26,7 +27,7 @@ export class CheckoutComponent implements OnInit {
 
       this.checkinurl = await res.operations[1].href;
       this.renderCheckin(this.cat);
-      console.log(this.cat)
+      
     });
   }
 
@@ -39,13 +40,13 @@ export class CheckoutComponent implements OnInit {
         container: "checkin",
         culture: 'nb-NO',
         onConsumerIdentified: function (consumerIdentifiedEvent) {
+          
+          console.log(this.string)
           cat.consumerProfileRef = consumerIdentifiedEvent.consumerProfileRef;
-          console.log(cat);
           console.log(consumerIdentifiedEvent);
           var request = new XMLHttpRequest();
           request.addEventListener('load', (e) => {
             let res = JSON.parse(request.responseText);
-            console.log(res)
             let renderPaymentMenuUrl = JSON.parse(res).operations.find(((o) => o.rel === 'view-paymentorder')).href
             let script = document.createElement('script');
             script.src = renderPaymentMenuUrl;
@@ -107,11 +108,10 @@ export class CheckoutComponent implements OnInit {
             var head = document.getElementsByTagName('head')[0];
             head.appendChild(script);
           })
-
+          
           request.open('POST', 'https://localhost:44307/api/Checkout/', true);
           request.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
           request.send(JSON.stringify(cat));
-
 
         },
         onShippingDetailsAvailable: function (shippingDetailsAvailableEvent) {
@@ -136,11 +136,12 @@ export class CheckoutComponent implements OnInit {
             padding: '5px',
             margin: '2px'
           },
-          
         }
       }).open();
     })
+    
     document.getElementsByTagName('head')[0].appendChild(script);
+    
   }
 
 
