@@ -12,11 +12,8 @@ declare var payex: any;
 
 export class CheckoutComponent implements OnInit {
 
-
   private checkinurl: string;
   cat: Cat;
-
-
 
   constructor(
     private productService: ProductService) {
@@ -31,12 +28,7 @@ export class CheckoutComponent implements OnInit {
       this.renderCheckin(this.cat);
       console.log(this.cat)
     });
-
-
   }
-
-
-
 
   renderCheckin(cat: Cat): void {
 
