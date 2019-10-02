@@ -54,9 +54,8 @@ export class CheckoutComponent implements OnInit {
                 container: 'payment-menu',
                 culture: 'nb-NO',
                 onPaymentCompleted: function (paymentCompletedEvent) {
-                  console.log('Payment success')
                   console.log(paymentCompletedEvent);
-                  window.location.replace(paymentCompletedEvent.redirectUrl)
+                  //window.location.replace(paymentCompletedEvent.redirectUrl)
                 },
                 onPaymentFailed: function (paymentFailedEvent) {
                   console.log(paymentFailedEvent);
@@ -115,7 +114,7 @@ export class CheckoutComponent implements OnInit {
 
         },
         onShippingDetailsAvailable: function (shippingDetailsAvailableEvent) {
-          console.log('shipping detail event: ' +shippingDetailsAvailableEvent);
+          console.log(shippingDetailsAvailableEvent);
         },
         style: {
           body: {
