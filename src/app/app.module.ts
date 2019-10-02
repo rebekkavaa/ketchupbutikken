@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ProductModule } from './products/product.module';
+import { PaymentSuccessComponent } from './paymentSuccess/payment-success/payment-success.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    CheckoutComponent,    
+    CheckoutComponent,
+    PaymentSuccessComponent,    
   ],
   imports: [
     BrowserModule,
@@ -20,7 +22,7 @@ import { ProductModule } from './products/product.module';
     RouterModule.forRoot([
       { path: 'home', component: HomeComponent },
       { path: 'checkout', component: CheckoutComponent },
-
+      { path: 'paymentSuccess', component: PaymentSuccessComponent},
       { path: '', redirectTo: '/home', pathMatch: 'full' },
       { path: '**', redirectTo: '/home', pathMatch: 'full' },
 

@@ -40,8 +40,6 @@ export class CheckoutComponent implements OnInit {
         container: "checkin",
         culture: 'nb-NO',
         onConsumerIdentified: function (consumerIdentifiedEvent) {
-          
-          console.log(this.string)
           cat.consumerProfileRef = consumerIdentifiedEvent.consumerProfileRef;
           console.log(consumerIdentifiedEvent);
           var request = new XMLHttpRequest();
@@ -56,7 +54,9 @@ export class CheckoutComponent implements OnInit {
                 container: 'payment-menu',
                 culture: 'nb-NO',
                 onPaymentCompleted: function (paymentCompletedEvent) {
+                  console.log('Payment success')
                   console.log(paymentCompletedEvent);
+                  window.location.replace(paymentCompletedEvent.redirectUrl)
                 },
                 onPaymentFailed: function (paymentFailedEvent) {
                   console.log(paymentFailedEvent);
@@ -115,7 +115,7 @@ export class CheckoutComponent implements OnInit {
 
         },
         onShippingDetailsAvailable: function (shippingDetailsAvailableEvent) {
-          console.log(shippingDetailsAvailableEvent);
+          console.log('shipping detail event: ' +shippingDetailsAvailableEvent);
         },
         style: {
           body: {
