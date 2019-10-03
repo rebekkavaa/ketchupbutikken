@@ -15,7 +15,9 @@ export class CheckoutComponent implements OnInit {
 
   private checkinurl: string;
   cat: Cat;
-  
+  showcheckin: Boolean;
+
+
 
   constructor(
     private productService: ProductService) {
