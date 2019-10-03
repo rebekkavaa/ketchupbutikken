@@ -46,6 +46,8 @@ export class CheckoutComponent implements OnInit {
         culture: 'nb-NO',
         onConsumerIdentified: function (consumerIdentifiedEvent) {
           cat.consumerProfileRef = consumerIdentifiedEvent.consumerProfileRef;
+          let checkin = document.getElementById('checkin')
+          checkin.innerHTML=null;
           console.log(consumerIdentifiedEvent);
           var request = new XMLHttpRequest();
           request.addEventListener('load', (e) => {
@@ -121,7 +123,7 @@ export class CheckoutComponent implements OnInit {
         },
         onShippingDetailsAvailable: function (shippingDetailsAvailableEvent) {
 
-          console.log(shippingDetailsAvailableEvent);
+          console.log(shippingDetailsAvailableEvent.url);
           var request = new XMLHttpRequest();
           request.open('GET','https://api.stage.payex.com' +shippingDetailsAvailableEvent.url,true);
           request.addEventListener('load', async () => {
