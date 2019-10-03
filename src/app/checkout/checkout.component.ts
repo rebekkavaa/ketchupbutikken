@@ -3,6 +3,7 @@ import { ProductService } from '../services/product.service';
 import { Cat } from '../shared/productlist/Cat'
 
 
+
 declare var payex: any;
 
 @Component({
@@ -42,13 +43,12 @@ export class CheckoutComponent implements OnInit {
         container: "checkin",
         culture: 'nb-NO',
         onConsumerIdentified: function (consumerIdentifiedEvent) {
-          
-          console.log(this.string)
           cat.consumerProfileRef = consumerIdentifiedEvent.consumerProfileRef;
           console.log(consumerIdentifiedEvent);
           var request = new XMLHttpRequest();
           request.addEventListener('load', (e) => {
             let res = JSON.parse(request.responseText);
+            console.log(JSON.parse(res))
             let renderPaymentMenuUrl = JSON.parse(res).operations.find(((o) => o.rel === 'view-paymentorder')).href
             let script = document.createElement('script');
             script.src = renderPaymentMenuUrl;
@@ -59,6 +59,7 @@ export class CheckoutComponent implements OnInit {
                 culture: 'nb-NO',
                 onPaymentCompleted: function (paymentCompletedEvent) {
                   console.log(paymentCompletedEvent);
+                  window.location.replace(paymentCompletedEvent.redirectUrl)
                 },
                 onPaymentFailed: function (paymentFailedEvent) {
                   console.log(paymentFailedEvent);
@@ -117,7 +118,17 @@ export class CheckoutComponent implements OnInit {
 
         },
         onShippingDetailsAvailable: function (shippingDetailsAvailableEvent) {
+
           console.log(shippingDetailsAvailableEvent);
+          var request = new XMLHttpRequest();
+          request.open('GET','https://api.stage.payex.com' +shippingDetailsAvailableEvent.url,true);
+          request.addEventListener('load', async () => {
+            console.log(await request.response)
+          });
+          request.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+          request.setRequestHeader('Authorization', 'Bearer 04042b5e853017869c5d8bdb6b432e26856f631de16bd0ec024233484b3f1cc0');
+          request.send();
+          
         },
         style: {
           body: {
@@ -134,7 +145,7 @@ export class CheckoutComponent implements OnInit {
             width: '200px',
           },
           label: {
-            backgroundColor: "#fd94ff",
+            backgroundColor: "#white",
             padding: '5px',
             margin: '2px'
           },
