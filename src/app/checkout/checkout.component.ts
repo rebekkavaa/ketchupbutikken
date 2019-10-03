@@ -23,7 +23,9 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): void {
     //Gets url for rendering check in
+    this.productService.getCat();
     this.cat = this.productService.cat;
+    this.productService.cat = this.cat
     this.productService.getCheckinUrl().subscribe(async res => {
 
       this.checkinurl = await res.operations[1].href;

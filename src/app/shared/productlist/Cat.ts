@@ -3,6 +3,7 @@ CatName: string
 ProductId: number
 Price: number
 consumerProfileRef:string;
+imageUrl:string
 }
 
 // _cat.CatName = cat.CatName;

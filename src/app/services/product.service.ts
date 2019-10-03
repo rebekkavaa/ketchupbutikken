@@ -10,9 +10,12 @@ import { Cat } from '../shared/productlist/Cat';
 })
 export class ProductService {
   private productUrl = 'api/products/products.json';
-  cat:Cat;
+  cat:Cat
   
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.cat = new Cat()
+    
+   }
 
   getProducts(): Observable<IProduct[]> {
     return this.http.get<IProduct[]>(this.productUrl)
@@ -26,6 +29,11 @@ export class ProductService {
       .pipe(
         map((products: IProduct[]) => products.find(p => p.productId === id))
       );
+  }
+  getCat(){
+    let localStorageItem = JSON.parse(localStorage.getItem('cat'));
+    return localStorageItem === null ? [] : localStorageItem;
+    
   }
 
   getCheckinUrl(): Observable<any>{

@@ -62,8 +62,11 @@ export class ProductListComponent implements OnInit {
     this.cat.CatName = product.productName
     this.cat.Price = product.price
     this.cat.ProductId = product.productId
-    
+    this.cat.imageUrl = product.imageUrl
     this.productService.cat = this.cat;
+
+    localStorage.setItem('cat', JSON.stringify({ 'cat': this.cat }));
+    
     this.router.navigate(['/checkout']) 
   }
 
