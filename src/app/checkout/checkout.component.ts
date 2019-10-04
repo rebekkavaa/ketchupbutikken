@@ -62,7 +62,7 @@ export class CheckoutComponent implements OnInit {
                 culture: 'nb-NO',
                 onPaymentCompleted: function (paymentCompletedEvent) {
                   console.log(paymentCompletedEvent);
-                  window.location.replace(paymentCompletedEvent.redirectUrl)
+                  //window.location.replace(paymentCompletedEvent.redirectUrl)
                 },
                 onPaymentFailed: function (paymentFailedEvent) {
                   console.log(paymentFailedEvent);
@@ -102,7 +102,7 @@ export class CheckoutComponent implements OnInit {
             console.log(await request.response)
           });
           request.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
-          request.setRequestHeader('Authorization', 'Bearer 04042b5e853017869c5d8bdb6b432e26856f631de16bd0ec024233484b3f1cc0');
+          request.setRequestHeader('Bearer', '04042b5e853017869c5d8bdb6b432e26856f631de16bd0ec024233484b3f1cc0');
           request.send();
 
         },
