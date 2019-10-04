@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FormsModule } from '@angular/forms';
-import { BestsellersComponent } from './bestsellers/bestsellers.component';
+
 
 @NgModule({
   imports: [
@@ -10,7 +10,7 @@ import { BestsellersComponent } from './bestsellers/bestsellers.component';
   ],
   declarations: [
 
-    BestsellersComponent
+    
   ],
   exports: [
     CommonModule,

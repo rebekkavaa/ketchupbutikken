@@ -8,13 +8,15 @@ import { HomeComponent } from './home/home.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ProductModule } from './products/product.module';
 import { PaymentSuccessComponent } from './payment-success/payment-success.component';
+import { BestsellersComponent } from '../app/shared/bestsellers/bestsellers.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     CheckoutComponent,
-    PaymentSuccessComponent,    
+    PaymentSuccessComponent,
+    BestsellersComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +24,8 @@ import { PaymentSuccessComponent } from './payment-success/payment-success.compo
     RouterModule.forRoot([
       { path: 'home', component: HomeComponent },
       { path: 'checkout', component: CheckoutComponent },
-      { path: 'paymentSuccess', component: PaymentSuccessComponent},
+      { path: 'paymentSuccess', component: PaymentSuccessComponent },
+      { path: 'terms', component: BestsellersComponent },
       { path: '', redirectTo: '/home', pathMatch: 'full' },
       { path: '**', redirectTo: '/home', pathMatch: 'full' },
 
